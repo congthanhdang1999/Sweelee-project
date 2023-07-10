@@ -1,0 +1,22 @@
+
+.title,.card-header{
+    font-weight: normal;
+    font-size: 1.5rem;
+    margin: 15px 0;
+    color: red;
+    text-transform: uppercase;
+}
+
+
+.order-item{
+    border: solid 1px black;
+    display: flex;
+}
+.image-product{
+    width: 15%;
+    background-color: red;
+}
+.detail-order{
+    width: 65%;
+    background-color: blue;
+}
