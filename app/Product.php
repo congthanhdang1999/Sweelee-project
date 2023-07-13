@@ -17,4 +17,7 @@ class Product extends Model
     public function images() {
         return $this->hasMany('App\ProductImages', 'product_id');
     }
+    public function detailOrder() {
+        return $this->hasOne('App\DetailOrder', 'product_id');
+    }
 }

@@ -105,25 +105,21 @@
                 </div>
                 @csrf
                 <div class="section-detail">
-                    <div class="form-row clearfix">
-                        <div class="form-col fl-left">
-                            <label for="fullname">Họ tên</label>
-                            <input type="text" name="fullname" id="fullname" require>
-                        </div>
-                        <div class="form-col fl-right">
-                            <label for="email">Email</label>
-                            <input type="email" name="email" id="email" require>
-                        </div>
+                    <div class="form-group">
+                        <label for="fullname">Họ và tên</label>
+                        <input type="text" class="form-control" name="fullname" id="fullname" value="{{Auth::user()->name}}"  placeholder="">
                     </div>
-                    <div class="form-row clearfix">
-                        <div class="form-col fl-left">
-                            <label for="address">Địa chỉ</label>
-                            <input type="text" name="address" id="address" require>
-                        </div>
-                        <div class="form-col fl-right">
-                            <label for="phone">Số điện thoại</label>
-                            <input type="tel" name="phone" id="phone" require>
-                        </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" name="email" value="{{Auth::user()->email}}"  id="email" aria-describedby="emailHelp" placeholder="">
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Địa chỉ</label>
+                        <input type="text" class="form-control" name="address" value="{{Auth::user()->information->address}}" id="address"  placeholder="">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Số điện thoại</label>
+                        <input type="text" class="form-control" name="phone" value="{{Auth::user()->information->phone}}" id="phone"  placeholder="">
                     </div>
                 </div>
                 @else

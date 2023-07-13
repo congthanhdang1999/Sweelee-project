@@ -45,6 +45,9 @@
         pointer-events: none;
         background-color: #d7d4d4;
     }
+    .checkout{
+        display:none;
+    }
 </style>
 @endsection
 @section('content')
@@ -75,7 +78,7 @@
                         <thead>
                             <tr>
                                 <td colspan="1">
-                                    <input name="checkall" type="checkbox">
+                                    <input name="checkall" class="check-all-product" type="checkbox">
                                 </td>
                                 <td>Tên sản phẩm</td>
                                 <td>Ảnh sản phẩm</td>
@@ -89,7 +92,7 @@
                             @foreach(Cart::content() as $product)
                             <tr>
                                 <td scope="col">
-                                    <input name="item[]" type="checkbox" value="{{$product->rowId}}">
+                                    <input name="item[]" type="checkbox" class="product-checkout" value="{{$product->rowId}}">
                                 </td>
                                 <td>
                                     <a href="{{route('detail.product',$product->id)}}" title="" class="name-product">{{$product->name}}</a>
@@ -122,9 +125,9 @@
                             </tr>
                             <tr>
                                 <td colspan="7">
-                                    <div class="clearfix">
+                                    <div class="clearfix checkout">
                                         <div class="fl-right">
-                                            <input type="submit" id="checkout-cart" value="Thanh toán">
+                                            <input type="submit" class="checkout" id="checkout-cart" value="Thanh toán">
                                             <!-- <a href="{{route('checkout.index')}}" title="" id="checkout-cart">Thanh toán</a> -->
                                         </div>
                                     </div>
@@ -189,6 +192,26 @@
             //alert(dataId);
 
         });
-    })
+        $('.product-checkout').click(function(){
+            var $result = $('input[type="checkbox"]:checked');
+            if($result.length > 0){
+                $(".checkout").css("display", "block");
+            }else{
+                $(".checkout").css("display", "none");
+            }
+            // console.log($result.length);
+            //alert("ok");
+        });
+        $('.check-all-product').click(function () {
+            $(this).closest('.section').find('.product-checkout').prop('checked', this.checked)
+            var $result = $('input[type="checkbox"]:checked');
+            if($result.length > 0){
+                $(".checkout").css("display", "block");
+            }else{
+                $(".checkout").css("display", "none");
+            }
+        })
+    });
+
 </script>
 @endsection

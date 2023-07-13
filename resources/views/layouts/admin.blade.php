@@ -16,7 +16,7 @@
 <body>
     <div id="warpper" class="nav-fixed">
         <nav class="topnav shadow navbar-light bg-white d-flex">
-            <div class="navbar-brand text-center"><a href="?">SWEE LEE MUSIC</a></div>
+            <div class="navbar-brand text-center"><a href="?">SWEE LEE</a></div>
             <div class="nav-right ">
                 <div class="btn-group mr-auto">
                     <button type="button" class="btn dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -52,7 +52,7 @@
             <div id="sidebar" class="bg-white">
                 <ul id="sidebar-menu">
                     <li class="nav-link">
-                        <a href="{{url('dashboard')}}">
+                        <a href="{{route('dashboard')}}">
                             <div class="nav-link-icon d-inline-flex">
                                 <i class="far fa-folder"></i>
                             </div>
@@ -75,7 +75,7 @@
                         </ul>
                     </li> -->
                     <li class="nav-link">
-                        <a href="{{url('admin/product/list')}}">
+                        <a href="{{route('product.index')}}">
                             <div class="nav-link-icon d-inline-flex">
                                 <i class="far fa-folder"></i>
                             </div>
@@ -83,13 +83,13 @@
                         </a>
                         <i class="arrow fas fa-angle-right"></i>
                         <ul class="sub-menu">
-                            <li><a href="{{url('admin/product/add')}}">Thêm mới</a></li>
-                            <li><a href="{{url('admin/product/list')}}">Danh sách</a></li>
-                            <li><a href="{{url('admin/cat_product/list')}}">Danh mục</a></li>
+                            <li><a href="{{route('product.add')}}">Thêm mới sản phẩm</a></li>
+                            <li><a href="{{route('categoryProduct.index')}}">Danh mục sản phẩm</a></li>
+                            <li><a href="{{route('product.index')}}">Danh sách sản phẩm</a></li>
                         </ul>
                     </li>
                     <li class="nav-link">
-                        <a href="{{url('admin/order/list')}}">
+                        <a href="{{route('order.index')}}">
                             <div class="nav-link-icon d-inline-flex">
                                 <i class="far fa-folder"></i>
                             </div>
@@ -97,11 +97,11 @@
                         </a>
                         <i class="arrow fas fa-angle-right"></i>
                         <ul class="sub-menu">
-                            <li><a href="{{url('admin/order/list')}}">Đơn hàng</a></li>
+                            <li><a href="{{route('order.index')}}">Đơn hàng</a></li>
                         </ul>
                     </li>
                     <li class="nav-link">
-                        <a href="{{url('admin/user/list')}}">
+                        <a href="{{route('user.index')}}">
                             <div class="nav-link-icon d-inline-flex">
                                 <i class="far fa-folder"></i>
                             </div>
@@ -109,8 +109,8 @@
                         </a>
                         <i class="arrow fas fa-angle-right"></i>
                         <ul class="sub-menu">
-                            <li><a href="{{url('admin/user/add')}}">Thêm mới</a></li>
-                            <li><a href="{{url('admin/user/list')}}">Danh sách</a></li>
+                            <li><a href="{{route('user.add')}}">Thêm mới</a></li>
+                            <li><a href="{{route('user.index')}}">Danh sách</a></li>
                         </ul>
                     </li>
                     <li class="nav-link">
@@ -137,7 +137,7 @@
                         <i class="arrow fas fa-angle-right"></i>
 
                         <ul class="sub-menu">
-                            <li><a href="{{url('admin/slider/list')}}">Danh sách</a></li>
+                            <li><a href="{{route('slider.index')}}">Danh sách</a></li>
                         </ul>
                     </li>
                 </ul>

@@ -9,6 +9,6 @@ class Information extends Model
     protected $guarded = [];
     protected $table = 'informations';
     public function user(){
-        return $this->belongstoMany('App\User','user_id');
+        return $this->belongsto('App\User','user_id');
     }
 }

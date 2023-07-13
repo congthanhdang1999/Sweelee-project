@@ -69,13 +69,12 @@
                         Danh sách
                     </div>
                     @foreach($list_permission as $permission => $values)
-                        <div class="card-body">
+                        <div class="card-body pb-0">
                             <div class="card my-2 border">
                                 <div class="card-header">
                                     <input type="checkbox" class="check-all" name="" id="post">
                                     <label for="post" class="m-0">{{$permission}}</label>
                                 </div>
-
                                     <div class="card-body">
                                         <div class="row">
                                             @foreach($values as $value)

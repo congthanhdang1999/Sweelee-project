@@ -23,10 +23,7 @@
                             <label for="sale_price">Giá sale</label>
                             <input class="form-control" type="text" name="sale_price" id="sale_price" placeholder="Nhập giá sale sản phẩm">
                         </div>
-                        <div class="form-group">
-                            <label for="quantity">Số lượng</label>
-                            <input class="form-control" type="text" name="quantity" id="quantity" placeholder="Nhập số lượng sản phẩm">
-                        </div>
+
                     </div>
                     <div class="col-6">
                         <div class="form-group">
@@ -38,8 +35,8 @@
                             <input class="form-control" type="file" value="Thêm hình ảnh" name="img_path[]" multiple="multiple" id="fileUpLoads">
                         </div>
                         <div class="form-group">
-                            <label for="video">Video sản phẩm</label>
-                            <input class="form-control" type="file" name="video" id="video">
+                            <label for="quantity">Số lượng</label>
+                            <input class="form-control" type="text" name="quantity" id="quantity" placeholder="Nhập số lượng sản phẩm">
                         </div>
                     </div>
                 </div>

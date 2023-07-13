@@ -48,17 +48,33 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function information()
     {
-        return $this->hasMany('App\Information');
+        return $this->hasOne('App\Information');
+    }
+    public function orders()
+    {
+        return $this->hasMany('App\Order');
     }
 
     public function hasPermission($permission)
     {
         foreach ($this->roles as $role) {
-            //user trỏ đến phương thức role để lấy role của user
             if ($role->permissions->where('keycode', $permission)->count() > 0) {
                 return true;
             };
-
+        }
+        return false;
+    }
+    public function hasRoles()
+    {
+        if($this->roles->count() > 0 ){
+            return true;
+        }
+        return false;
+    }
+    public function isUserNotAdmin()
+    {
+        if($this->roles->count() == 0 ){
+            return true;
         }
         return false;
     }

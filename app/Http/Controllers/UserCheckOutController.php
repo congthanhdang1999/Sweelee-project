@@ -26,7 +26,7 @@ class UserCheckOutController extends Controller
             //$test = Session::push("cart.products", ['id' => 2, 'item' => 1]);
             //Session::push('item_order',$listItem);
             Session::push('cartTotal',$cartTotal);
-            
+
             //$request->session->put('item_order',$itemOrder);
             //return Session::all();
             //$request->session()->flush('item_order');
@@ -40,14 +40,14 @@ class UserCheckOutController extends Controller
             // }
 
         }
-        
+
         //dd($itemOrder);
         return view('user.checkout.checkout',compact('itemOrder','cartTotal'));
     }
     public function delete(Request $request){
         return $request->session()->flush('item_order');
         //dd(Session::all());
-        return $request->session()->flush();
+        //return $request->session()->flush();
     }
     public function index(){
         dd(Session::all());

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\User;
@@ -56,7 +57,7 @@ class AdminUserController extends Controller
                 [
                     'name' => $request->name,
                     'email' => $request->email,
-                    'password' => Hash::make($request->Password),
+                    'password' => Hash::make($request->password),
                 ]
             );
             $roleId = $request->role_id;
@@ -109,10 +110,8 @@ class AdminUserController extends Controller
 //        $dataTest = $this->user->find(1)->roles;
         $data_user = $this->user->hasPermission('post.add');
 //        return $data_user->permissions();
-        $user = Role::with('permissions')->get();
+        //$user = Role::with('permissions')->get();
+        //dd(Auth::user()->hasRoles());
 
-        echo "<pre>";
-        print_r($user);
-        echo "</pre>";
     }
 }

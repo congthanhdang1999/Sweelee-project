@@ -88,22 +88,22 @@
             </div>
             <div class="section" id="list-product-wp">
                 <div class="section-head">
-                    <h3 class="section-title">Ukulele</h3>
+                    <h3 class="section-title">iPhone</h3>
                 </div>
                 <div class="section-detail">
                     <ul class="list-item clearfix">
-                        @foreach($pianos as $piano)
+                        @foreach($iphones as $iphone)
                         <li class="section-detail__item">
-                            <a href="{{route('detail.product',$piano->id)}}" title="" class="thumb">
-                                <img src="{{asset($piano->feature_image_path)}}" width="200px" height="200px">
+                            <a href="{{route('detail.product',$iphone->id)}}" title="" class="thumb">
+                                <img src="{{asset($iphone->feature_image_path)}}" width="200px" height="200px">
                             </a>
-                            <a href="{{route('detail.product',$piano->id)}}" title="" class="product-name">{{$piano->name}}</a>
+                            <a href="{{route('detail.product',$iphone->id)}}" title="" class="product-name">{{$iphone->name}}</a>
                             <div class="price">
-                                <span class="new">{{number_format($piano->sale_price, 0, 0, '.')}}đ</span>
-                                <span class="old">{{number_format($piano->price, 0, 0, '.')}}đ</span>
+                                <span class="new">{{number_format($iphone->sale_price, 0, 0, '.')}}đ</span>
+                                <span class="old">{{number_format($iphone->price, 0, 0, '.')}}đ</span>
                             </div>
                             <div class="action clearfix">
-                                <a href="{{route('cart.add',$piano->id)}}" title="Thêm giỏ hàng" class="add-cart fl-left">Thêm giỏ hàng</a>
+                                <a href="{{route('cart.add',$iphone->id)}}" title="Thêm giỏ hàng" class="add-cart fl-left">Thêm giỏ hàng</a>
                                 <a href="?page=checkout" title="Mua ngay" class="buy-now fl-right">Mua ngay</a>
                             </div>
                         </li>
@@ -113,22 +113,22 @@
             </div>
             <div class="section" id="list-product-wp">
                 <div class="section-head">
-                    <h3 class="section-title">Guitar</h3>
+                    <h3 class="section-title">Samsung</h3>
                 </div>
                 <div class="section-detail">
                     <ul class="list-item clearfix">
-                        @foreach($guitars as $guitar)
+                        @foreach($samsungs as $samsung)
                         <li class="section-detail__item">
-                            <a href="{{route('detail.product',$guitar->id)}}" title="" class="thumb">
-                                <img src="{{asset($guitar->feature_image_path)}}" width="200px" height="200px">
+                            <a href="{{route('detail.product',$samsung->id)}}" title="" class="thumb">
+                                <img src="{{asset($samsung->feature_image_path)}}" width="200px" height="200px">
                             </a>
-                            <a href="{{route('detail.product',$guitar->id)}}" title="" class="product-name">{{$guitar->name}}</a>
+                            <a href="{{route('detail.product',$samsung->id)}}" title="" class="product-name">{{$samsung->name}}</a>
                             <div class="price">
-                                <span class="new">{{number_format($guitar->sale_price, 0, 0, '.')}}đ</span>
-                                <span class="old">{{number_format($guitar->price, 0, 0, '.')}}đ</span>
+                                <span class="new">{{number_format($samsung->sale_price, 0, 0, '.')}}đ</span>
+                                <span class="old">{{number_format($samsung->price, 0, 0, '.')}}đ</span>
                             </div>
                             <div class="action clearfix">
-                                <a href="{{route('cart.add',$guitar->id)}}" title="Thêm giỏ hàng" class="add-cart fl-left">Thêm giỏ hàng</a>
+                                <a href="{{route('cart.add',$samsung->id)}}" title="Thêm giỏ hàng" class="add-cart fl-left">Thêm giỏ hàng</a>
                                 <a href="?page=checkout" title="Mua ngay" class="buy-now fl-right">Mua ngay</a>
                             </div>
                         </li>

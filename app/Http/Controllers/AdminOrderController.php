@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Customer;
 use App\Mail\OrderConfirmation;
+use App\User;
 use PhpParser\Node\Stmt\TryCatch;
 use App\DetailOrder;
 use App\Order;
@@ -23,12 +24,17 @@ class AdminOrderController extends Controller
 {
     private $order;
     private $product;
+    private $user;
+    private $detailOrder;
 
-    public function __construct(Order $order, Product $product)
+    public function __construct(Order $order, Product $product, User $user, DetailOrder $detailOrder)
     {
         $this->order = $order;
         $this->product = $product;
+        $this->user = $user;
+        $this->detailOrder = $detailOrder;
     }
+
     public function show(Request $request)
     {
         $search = "";
@@ -40,9 +46,8 @@ class AdminOrderController extends Controller
             $orders = $this->order->where('status', 1)->paginate(8);
         } elseif ($statusOrder == "success") {
             $orders = $this->order->where('status', 2)->paginate(8);
-        } elseif ($statusOrder == "cancel") {
-            $orders = $this->order->onlyTrashed()->paginate(8);
-            //dd($orders);
+        } elseif ($statusOrder == "cancel"){
+            $orders = $this->order->where('status', 3)->paginate(8);
         } else {
             if ($request->input('search')) {
                 $search = $request->input('search');
@@ -53,23 +58,22 @@ class AdminOrderController extends Controller
         $count_order_processing = $this->order->where('status', 0)->count();
         $count_order_delivery = $this->order->where('status', 1)->count();
         $count_order_success = $this->order->where('status', 2)->count();
-        $count_order_cancel = $this->order->onlyTrashed()->count();
-        $count = [$count_order_all, $count_order_processing, $count_order_delivery, $count_order_success, $count_order_cancel];
+        $count_order_cancel = $this->order->where('status', 3)->count();
+        $count = [$count_order_all, $count_order_processing, $count_order_delivery, $count_order_success,$count_order_cancel];
 
-        //$orders = $this->order->paginate(8);
-        //dd($count);
         return view('admin.order.list', compact('orders', 'count'));
     }
+
     public function create(Request $request)
     {
 
         try {
             DB::beginTransaction();
             $dataCustomerCreate = [
-                'name' => $request->fullname,
-                'email' => $request->email,
-                'address' => $request->address,
-                'phone' => $request->phone
+                'name' => $request->input('fullname'),
+                'email' => $request->input('email'),
+                'address' => $request->input('address'),
+                'phone' => $request->input('phone')
             ];
             //dd($dataCustomerCreate);
             $number = Str::random(5);
@@ -77,16 +81,16 @@ class AdminOrderController extends Controller
             $code = 'VN-' . $upperNumber;
             $customer = $this->order->customer()->create($dataCustomerCreate);
             $dataOrderCreate = [
-                'customer_id' => $customer->id,
+                'user_id' => Auth::user()->id,
                 'code' => $code,
                 'total' => Session::get('cartTotal')[0],
                 'status' => 0,
             ];
             //dd($dataOrderCreate);
+            //dd(Session::get('item_order'));
             $orderCreate = $this->order->create($dataOrderCreate);
             foreach (Session::get('item_order') as $item) {
-                
-                $orderCreate->orderDetails()->create([
+                $orderSuccess = $orderCreate->orderDetails()->create([
                     'name' => $item->name,
                     'price' => $item->price,
                     'quantity' => $item->qty,
@@ -102,57 +106,72 @@ class AdminOrderController extends Controller
                 ]);
             }
             DB::commit();
+
+            $dataOrderConfirmation = array_merge($dataCustomerCreate, $dataOrderCreate);
+            $sendMail = Mail::to($request->email)->send(new OrderConfirmation($dataOrderConfirmation));
+
+            foreach (Session::get('item_order') as $item) {
+                Cart::remove($item->rowId);
+            }
+            $request->session()->pull('item_order', 'cartTotal');
+            Alert::success('Đặt hàng thành công', 'Xin cảm ơn!');
+            return redirect()->route('home');
+
         } catch (Exception $exception) {
             DB::rollBack();
             Log::error('message:' . $exception->getMessage() . '---line' . $exception->getLine());
         }
+
+
         //merge $dataCustomerCreate,$dataOrderCreate,$dataDetailOrder
         //dd($dataDetailOrder);
         //dd($request->email);
-        $dataOrderConfirmation = array_merge($dataCustomerCreate, $dataOrderCreate);
-        // //dd($dataOrderConfirmation);
-        //dd(Session::get('item_order'));
-        Mail::to($request->email)->send(new OrderConfirmation($dataOrderConfirmation));
-        foreach (Session::get('item_order') as $item) {
-            Cart::remove($item->rowId);
-        }
-        $request->session()->pull('item_order', 'cartTotal');
-        Alert::success('Đặt hàng thành công', 'Xin cảm ơn!');
-        return redirect()->route('home');
+//
+//        //dd($dataOrderConfirmation);
+//        //dd(Session::get('item_order'));
+//        Mail::to($request->email)->send(new OrderConfirmation($dataOrderConfirmation));
+//        foreach (Session::get('item_order') as $item) {
+//            Cart::remove($item->rowId);
+//        }
+//        $request->session()->pull('item_order', 'cartTotal');
+//        Alert::success('Đặt hàng thành công', 'Xin cảm ơn!');
+//
 
     }
 
-    public function detail($id)
+    public function detail($id)//id đơn hàng
     {
-        $detailOrder = $this->order->find($id);
-        $selectStatus = ['Đang xử lý', 'Đang giao hàng', 'Hoàn thành'];
-        $products = DB::table('detail_orders')
-            ->join('products', 'products.id', '=', 'detail_orders.product_id')
-            ->where('detail_orders.order_id', $id)
+        $id = (int)($id);
+
+        $dataUserOrder = DB::table('orders')
+            ->select('*')
+            ->join('users', 'orders.user_id', '=', 'users.id')
+            ->join('informations', 'informations.id', '=', 'users.id')
+            ->where('orders.id', '=', $id)
             ->get();
-        //dd($products);
-        return view('admin.order.detail', compact('detailOrder', 'products', 'selectStatus'));
+        //dd($dataUserOrder->name);
+//        return $dataUserOrder;
+        $detailOrder = $this->order->find($id);//chi tiết đơn hàng của từ id
+        $detailOrderProduct = $this->detailOrder->where('order_id', $id)->get();
+//return $detailOrderProduct ;
+        $selectStatus = ['Đang xử lý', 'Đang giao hàng', 'Hoàn thành', 'Đã huỷ'];
+//        $products = DB::table('detail_orders')
+//            ->join('products', 'products.id', '=', 'detail_orders.product_id')
+//            ->where('detail_orders.order_id', $id)
+//            ->get();
+
+        return view('admin.order.detail', compact('detailOrder', 'detailOrderProduct', 'selectStatus', 'dataUserOrder'));
     }
+
     public function update(Request $request, $id)
     {
+
         $this->order->find($id)->update([
             'status' => (int)$request->input('status')
         ]);
-        //return $request->all();
+
         return redirect()->route('order.index')->with('status', 'Bạn đã chuyển tình trạng đơn hàng thành công');
     }
-    public function delete($id)
-    {
-        $recovery = DetailOrder::where('order_id', $id)->get();
-        //dd($recovery);
-        foreach ($recovery as $item) {
-            $product = $this->product->find($item->product_id);
-            $quantity = $product->quantity + $item->quantity;
-            $this->product->find($item->product_id)->update([
-                'quantity' => $quantity
-            ]);
-        }
-        $this->order->find($id)->delete();
-        return redirect()->route('order.index')->with('status', 'Bạn đã xoá đơn hàng thành công');
-    }
+
+
 }

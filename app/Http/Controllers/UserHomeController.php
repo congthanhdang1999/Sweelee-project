@@ -19,21 +19,18 @@ class UserHomeController extends Controller
         $this->slider = $slider;
     }
 
-    
+
     public function index()
     {
         $slider = $this->slider->all();
-        $guitars = $this->categoryProduct->find(1)->productParent->take(8);
-        $pianos = $this->categoryProduct->find(4)->productParent->take(8);
+        $samsungs = $this->categoryProduct->find(1)->productParent->take(8);
+        $iphones = $this->product->where('category_product_id',4)->get();
         $featureProduct = $this->product->where('status',0)->orderBy('id','DESC')->get();
         $products = $this->product->take(8)->get();
         $category_limit = $this->categoryProduct->where('parent_id',0)->get();
-        $accessory = $this->categoryProduct->find(6)->productParent->take(5);
-        //dd($accessory);
-        //$guitar8 = $guitar->paginate(8);
-        //dd($guitars);
-        //dd($products);
-        return view('user.home',compact('guitars','pianos','featureProduct','products','slider','category_limit','accessory'));
+        $accessory = $this->categoryProduct->find(13)->productParent->take(5);
+
+        return view('user.home',compact('samsungs','iphones','featureProduct','products','slider','category_limit','accessory'));
     }
     public function sidebar(){
         $category_limit = $this->categoryProduct->where('parent_id',0)->get();

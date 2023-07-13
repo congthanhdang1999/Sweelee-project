@@ -7,7 +7,7 @@
                 <div class="card-header font-weight-bold">
                     Danh mục sản phẩm
                 </div>
-                
+
                 <div class="card-body">
                     <form method="POST" action="{{url('admin/cat_product/store')}}">
                         @csrf
@@ -69,9 +69,9 @@
                                 <td>{{ $item->catProductParent->name }}</td>
                                 @endif
                                 <td>
-                                    <a href="{{route('category_product.getupdate',$item->id)}}" class="btn btn-success btn-sm rounded-0 text-white" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></a>
+                                    <a href="{{route('categoryProduct.getupdate',$item->id)}}" class="btn btn-success btn-sm rounded-0 text-white" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></a>
 
-                                    <a href="{{route('category_product.delete',$item->id)}}" onclick="return confirm('Bạn chắc chắn xoắ danh mục này')" class="btn btn-danger btn-sm rounded-0 text-white" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></a>
+                                    <a href="{{route('categoryProduct.delete',$item->id)}}" onclick="return confirm('Bạn chắc chắn xoắ danh mục này')" class="btn btn-danger btn-sm rounded-0 text-white" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></a>
                                 </td>
                             </tr>
                             @endforeach

@@ -48,7 +48,7 @@ class RoleController extends Controller
             'name' => $request->input('name'),
             'display_name' => $request->input('display_name')
         ]);
-        $dataRoleCreate->getPermission()->attach($request->input('permission_id'));
+        $dataRoleCreate->permissions()->attach($request->input('permission_id'));
         return redirect()->route('role.index');
 
     }

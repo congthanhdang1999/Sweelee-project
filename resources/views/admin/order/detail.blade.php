@@ -39,12 +39,14 @@
                             </tr>
                         </thead>
                         <tbody>
+                        @foreach($dataUserOrder as $info)
                             <tr>
-                                <td>{{ $detailOrder->customer->name }}</td>
-                                <td>{{ $detailOrder->customer->phone }}</td>
-                                <td>{{ $detailOrder->customer->address }}</td>
-                                <td>{{ $detailOrder->customer->email }}</td>
+                                <td>{{ $info->name }}</td>
+                                <td>{{ $info->phone }}</td>
+                                <td>{{ $info->address }}</td>
+                                <td>{{ $info->email }}</td>
                             </tr>
+                        @endforeach
                         </tbody>
                     </table>
                 </li>
@@ -63,8 +65,7 @@
                             @endforeach
                         </select>
                         <input type="submit" class="btn btn-primary" value="Cập nhật đơn hàng" name="btn-updateOrder">
-                        <a href="{{route('order.delete',$detailOrder->id)}}" onclick="return confirm('Bán có chắc chắn hủy đơn hàng này')" class="btn btn-danger ml-3" data-toggle="tooltip" title="Delete">
-                            Hủy đơn hàng</a>
+
                     </li>
                 </form>
             </ul>
@@ -91,15 +92,15 @@
                     @php
                     $stt = 1;
                     @endphp
-                    @foreach($products as $product)
+                    @foreach($detailOrderProduct as $product)
                     <tr>
                         <td scope="row">{{$stt++}}</td>
-                        <td><img class="img-thumbnail" src="{{asset($product->feature_image_path)}}" alt=""></td>
+                        <td><img class="img-thumbnail" src="{{asset($product->products->feature_image_path)}}" alt=""></td>
                         <td>{{$product->name}}</td>
 
-                        <td>{{number_format($product->sale_price, 0, 0, '.')}}đ</td>
+                        <td>{{number_format($product->products->sale_price, 0, 0, '.')}}đ</td>
                         <td>{{$product->quantity}}</td>
-                        <td>{{number_format($product->sale_price * $product->quantity, 0, 0, '.')}}đ</td>
+                        <td>{{number_format($product->products->sale_price * $product->quantity, 0, 0, '.')}}đ</td>
                     </tr>
                     @endforeach
                 </tbody>
@@ -114,7 +115,7 @@
             <table class="table table-bordered">
                 <tr>
                     <td class="title-num">Tổng số lượng sản phẩm</td>
-                    <td class="detail-num">{{$products->sum('quantity')}}</td>
+                    <td class="detail-num">{{$detailOrderProduct->sum('quantity')}}</td>
                 </tr>
                 <tr class="total-order">
                     <td class="title-price">Tổng giá trị đơn hàng</td>

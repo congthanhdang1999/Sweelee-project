@@ -25,7 +25,7 @@
             <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
                 <div class="card-header">DOANH SỐ</div>
                 <div class="card-body">
-                    <h5 class="card-title">{{number_format($sucessOrder,0,0,'.')}}đ</h5>
+                    <h5 class="card-title">{{number_format($successOrder,0,0,'.')}}đ</h5>
                     <p class="card-text">Doanh số hệ thống</p>
                 </div>
             </div>
@@ -69,15 +69,15 @@
                             {{$stt++}}
                     </td>
 
-                        
+
                         <td>{{$item->code}}</td>
                         <td>
-                            {{$item->customer->name}}<br>
-                            {{$item->customer->phone}}
+                            {{$item->users->name}}
+
                         </td>
                         <td>{{$item->orderDetails->sum('quantity')}}</td>
                         <td>{{number_format($item->total,0,0,'.')}}đ</td>
-                        
+
                         @if($item->status == 0)
                         <td><span class="badge badge-warning">Đang xử lý</span></td>
                         @elseif($item->status == 1)

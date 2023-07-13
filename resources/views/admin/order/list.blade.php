@@ -26,7 +26,7 @@
                 <a href="{{ request()->fullUrlWithQuery(['statusOrder' => 'cancel']) }}" class="text-primary">Đã bị huỷ<span class="text-muted">({{$count[4]}})</span></a>
             </div>
             <div class="form-action form-inline py-3">
-                
+
             </div>
             <table class="table table-striped table-checkall text-center">
                 <thead>
@@ -58,8 +58,8 @@
                         <td>{{$stt++}}</td>
                         <td>{{$item->code}}</td>
                         <td>
-                            {{$item->customer->name}}<br>
-                            {{$item->customer->phone}}
+                            {{$item->users->name}}<br>
+                            {{$item->users->phone}}
                         </td>
                         <td>{{$item->orderDetails->sum('quantity')}}</td>
                         <td>{{number_format($item->total,0,0,'.')}}đ</td>
@@ -75,7 +75,7 @@
                         <td>{{ date('d/m/Y', strtotime($item->created_at)) }}</td>
                         <td class="bottom__action">
                             <a href="{{route('order.detail',$item->id)}}" class="btn btn-success btn-sm rounded-0 text-white" type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-eye"></i></a>
-                            <a href="{{route('order.delete',$item->id)}}" class="btn btn-danger btn-sm rounded-0 text-white" type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></a>
+                            
                         </td>
                     </tr>
                     @endforeach

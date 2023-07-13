@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Order extends Model
 {
     protected $guarded = [];
-    use SoftDeletes;
-    public function customer() {
-        return $this->belongsTo(Customer::class, 'customer_id');
+
+    public function users() {
+        return $this->belongsTo('App\User', 'user_id');
     }
     public function orderDetails() {
         return $this->hasMany('App\DetailOrder', 'order_id');
