@@ -6,6 +6,7 @@ use App\Product;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 use Laravel\Ui\Presets\React;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class UserCartController extends Controller
 {
@@ -26,22 +27,24 @@ class UserCartController extends Controller
         //dd(Cart::content());
         return view('user.cart.cart');
     }
-    public function add($id)
+    public function add($id,Request $request)
     {
+
+
         $product = $this->product->find($id);
         //dd($product);
         Cart::add([
             'id' => $product->id,
             'name' => $product->name,
-            'qty' => 1,
+            'qty' => $request->input('num-order'),
             'price' => $product->sale_price,
             'options' => [
                 'thumbnail' => $product->feature_image_path,
                 'inventory_number' => $product->quantity,
             ]
         ]);
-        //dd(Cart::content());
-        return redirect()->route('cart.index');
+        Alert::success('Thêm sản phẩm vào giỏ hàng thành công!');
+        return redirect()->back();
     }
     public function update(Request $request)
     {

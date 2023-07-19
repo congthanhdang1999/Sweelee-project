@@ -24,11 +24,7 @@ class UserProductController extends Controller
     }
     public function show($id, Request $request)
     {
-        // $check_brand_id = $request->input('select_brand');
-        // //echo($check_brand);
-        // //return $request->all();
-        // //sidebar
-        //dd($request->all());
+
         $category_limit = $this->categoryProduct->where('parent_id', 0)->get();
         $categoryProduct = $this->categoryProduct->find($id);
         // $category_product = $this->categoryProduct->find($id);
@@ -48,30 +44,21 @@ class UserProductController extends Controller
     }
     public function search(Request $request)
     {
-        // dd($request->all());
-        // $filter = $request->price_filter;
-        //echo $filter;
+
         $category_limit = $this->categoryProduct->where('parent_id', 0)->get();
         $keyword = "";
-        // if($filter){
-        //     $listProduct = $this->product->where('price', '<', 5000000)->get();
-        // }
+
         if ($request->input('keyword')) {
             $keyword = $request->input('keyword');
             //dd($keyword);
             $listProduct = $this->product->where('name', 'like', "%{$keyword}%")->orderBy('id', 'DESC')->get();
-        } 
+        }
         return view('user.product.list', compact('category_limit', 'listProduct'));
     }
-    public function check(Request $request){
-        dd($request->all());
-        return view('user.order.update');
-        return view('user.order.test');
-        return view('user.order.detailOrder');
-        return view('user.order.order');
-    }
+
     public function detailProduct($id)
     {
+
         $detailProduct = $this->product->find($id);
         $category_limit = $this->categoryProduct->where('parent_id', 0)->get();
 

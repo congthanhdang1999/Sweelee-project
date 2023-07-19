@@ -103,7 +103,7 @@
 }
 #feature-product-wp .list-item li, #same-category-wp .list-item li{
     background: #fff;
-    padding: 10px 10px 30px 10px;
+    padding: 10px 10px 10px 10px;
     margin: 0% 2%;
 }
 #feature-product-wp .list-item li .product-name, #list-product-wp .list-item li .product-name, #same-category-wp .list-item li .product-name{
@@ -135,7 +135,7 @@
     padding: 2px 10px;
     font-size: 12px;
 }
-#feature-product-wp .list-item li .action .add-cart, #list-product-wp .list-item li .action .add-cart, #same-category-wp .list-item li .action .add-cart{ 
+#feature-product-wp .list-item li .action .add-cart, #list-product-wp .list-item li .action .add-cart, #same-category-wp .list-item li .action .add-cart{
     border: 1px solid #333;
     color: #333;
 }
@@ -145,13 +145,13 @@
 }
 #feature-product-wp .list-item li .action .buy-now:hover, #list-product-wp .list-item li .action .buy-now:hover, #same-category-wp .list-item li .action .buy-now:hover{ background: #da1818; color: #fff;}
 #feature-product-wp .list-item li .action .add-cart:hover, #list-product-wp .list-item li .action .add-cart:hover, #same-category-wp .list-item li .action .add-cart:hover{ background: #333; color: #fff;}
-#list-product-wp .section-detail .list-item li{ 
-    float: left; 
+#list-product-wp .section-detail .list-item li{
+    float: left;
     width: 24.25%;
-    margin-right: 1%; 
+    margin-right: 1%;
     margin-bottom: 1%;
     background: #fff;
-    padding: 10px 10px 30px 10px;
+    padding: 10px 10px 10px 10px;
     border: 1px solid transparent;
 }
 #feature-product-wp .section-detail .list-item li{ border: 1px solid transparent;}
@@ -161,7 +161,7 @@
 /*SIDEBAR MENU*/
 #category-product-wp .list-item li{ position: relative;}
 #category-product-wp .list-item li .sub-menu{
-    display: none; 
+    display: none;
     position: absolute;
     left: 100%;
     top: 0;

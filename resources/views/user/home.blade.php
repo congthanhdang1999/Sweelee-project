@@ -3,6 +3,7 @@
 <style>
     .section-detail__item {
         border-radius: 5%;
+        padding-bottom: 10px !important;
     }
 </style>
 @endsection
@@ -77,10 +78,7 @@
                                 <span class="new">{{number_format($product->sale_price, 0, 0, '.')}}đ</span>
                                 <span class="old">{{number_format($product->price, 0, 0, '.')}}đ</span>
                             </div>
-                            <div class="action clearfix">
-                                <a href="{{route('cart.add',$product->id)}}" title="" class="add-cart fl-left">Thêm giỏ hàng</a>
-                                <a href="{{route('checkout.index')}}" title="" class="buy-now fl-right">Mua ngay</a>
-                            </div>
+
                         </li>
                         @endforeach
                     </ul>
@@ -102,10 +100,10 @@
                                 <span class="new">{{number_format($iphone->sale_price, 0, 0, '.')}}đ</span>
                                 <span class="old">{{number_format($iphone->price, 0, 0, '.')}}đ</span>
                             </div>
-                            <div class="action clearfix">
-                                <a href="{{route('cart.add',$iphone->id)}}" title="Thêm giỏ hàng" class="add-cart fl-left">Thêm giỏ hàng</a>
-                                <a href="?page=checkout" title="Mua ngay" class="buy-now fl-right">Mua ngay</a>
-                            </div>
+{{--                            <div class="action clearfix">--}}
+{{--                                <a href="{{route('cart.add',$iphone->id)}}" title="Thêm giỏ hàng" class="add-cart fl-left">Thêm giỏ hàng</a>--}}
+{{--                                <a href="{{route('checkout.product',$iphone->id)}}" title="Mua ngay" class="buy-now fl-right">Mua ngay</a>--}}
+{{--                            </div>--}}
                         </li>
                         @endforeach
                     </ul>
@@ -123,13 +121,9 @@
                                 <img src="{{asset($samsung->feature_image_path)}}" width="200px" height="200px">
                             </a>
                             <a href="{{route('detail.product',$samsung->id)}}" title="" class="product-name">{{$samsung->name}}</a>
-                            <div class="price">
+                            <div class="price mb-1">
                                 <span class="new">{{number_format($samsung->sale_price, 0, 0, '.')}}đ</span>
                                 <span class="old">{{number_format($samsung->price, 0, 0, '.')}}đ</span>
-                            </div>
-                            <div class="action clearfix">
-                                <a href="{{route('cart.add',$samsung->id)}}" title="Thêm giỏ hàng" class="add-cart fl-left">Thêm giỏ hàng</a>
-                                <a href="?page=checkout" title="Mua ngay" class="buy-now fl-right">Mua ngay</a>
                             </div>
                         </li>
                         @endforeach

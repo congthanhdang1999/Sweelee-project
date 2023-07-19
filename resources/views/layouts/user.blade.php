@@ -107,9 +107,8 @@
                                         <p class="title fl-left">Tổng:</p>
                                         <p class="price fl-right">{{Cart::total()}}</p>
                                     </div>
-                                    <div class="action-cart clearfix">
-                                        <a href="{{route('cart.index')}}" title="Giỏ hàng" class="view-cart fl-left">Giỏ hàng</a>
-                                        <a href="{{route('checkout.index')}}" title="Thanh toán" class="checkout fl-right">Thanh toán</a>
+                                    <div class="action-cart text-right" style="text-align: center">
+                                        <a href="{{route('cart.index')}}" title="Giỏ hàng" class="view-cart">Giỏ hàng</a>
                                     </div>
                                 </div>
 

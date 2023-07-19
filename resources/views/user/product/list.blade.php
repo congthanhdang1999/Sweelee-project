@@ -3,7 +3,9 @@
 <style>
     .section-detail__item {
         border-radius: 5%;
+        padding-bottom: 10px !important;
     }
+
 </style>
 @endsection
 @section('content')
@@ -28,14 +30,14 @@
                     <div class="filter-wp fl-right">
 
                         <div class="form-filter">
-                            <form method="POST" action="">
-                                <select name="price_filter">
-                                    
-                                    <option value="3">2tr đến 3tr</option>
-                                    
-                                </select>
-                                <button type="submit">Lọc</button>
-                            </form>
+{{--                            <form method="POST" action="">--}}
+{{--                                <select name="price_filter">--}}
+
+{{--                                    <option value="3">2tr đến 3tr</option>--}}
+
+{{--                                </select>--}}
+{{--                                <button type="submit">Lọc</button>--}}
+{{--                            </form>--}}
                         </div>
                     </div>
                 </div>
@@ -51,10 +53,7 @@
                                 <span class="new">{{number_format($item->sale_price, 0, 0, '.')}}đ</span>
                                 <span class="old">{{number_format($item->price, 0, 0, '.')}}đ</span>
                             </div>
-                            <div class="action clearfix">
-                                <a href="{{route('cart.add',$item->id)}}" title="Thêm giỏ hàng" class="add-cart fl-left">Thêm giỏ hàng</a>
-                                <a href="?page=checkout" title="Mua ngay" class="buy-now fl-right">Mua ngay</a>
-                            </div>
+
                         </li>
                         @endforeach
                     </ul>

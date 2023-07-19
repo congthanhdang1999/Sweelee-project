@@ -107,6 +107,7 @@ Route::middleware(['can:user-profile'])->group(function () {
 
 //HOME
 Route::get('/', 'UserHomeController@index')->name('home');
+
 Route::get('detail/list/{id}', 'UserProductController@detailProduct')->name('detail.product');
 
 //user product
@@ -121,12 +122,13 @@ Route::get('post/{slug}', 'UserPostController@detailPost')->name('detailPost.ind
 
 
 //checkout
+Route::get('checkout/{id}', 'UserCheckOutController@checkoutHome')->name('checkout.product'); //checkout from home
 Route::post('checkout', 'UserCheckOutController@show')->name('checkout.index');
 Route::get('delete', 'UserCheckOutController@delete')->name('checkout.delete');
 Route::get('show', 'UserCheckOutController@index')->name('checkout.show');
 // cart
 Route::get('gio-hang', 'UserCartController@show')->name('cart.index');
-Route::get('cart/add/{id}', 'UserCartController@add')->name('cart.add');
+Route::post('cart/add/{id}', 'UserCartController@add')->name('cart.add');
 Route::get('cart/delete/{rowId}', 'UserCartController@delete')->name('cart.delete');
 Route::get('cart/update', 'UserCartController@update')->name('cart.update');
 Route::get('cart/ajax', 'UserCartController@ajax')->name('cart.ajax');
