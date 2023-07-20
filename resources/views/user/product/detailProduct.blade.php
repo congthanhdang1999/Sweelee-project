@@ -99,116 +99,11 @@
                 </div>
 
 
-                <!-- <div class="section" id="same-category-wp">
-                    <div class="section-head">
-                        <h3 class="section-title">Cùng chuyên mục</h3>
-                    </div>
-                    <div class="section-detail">
-                        <ul class="list-item">
-                            <li>
-                                <a href="" title="" class="thumb">
-                                    <img src="https://vietthuong.vn/image/catalog/kawai/Grand/dan-piano-grand-kawai-gl20.jpg">
-                                </a>
-                                <a href="" title="" class="product-name">Laptop HP Probook 4430s</a>
-                                <div class="price">
-                                    <span class="new">17.900.000đ</span>
-                                    <span class="old">20.900.000đ</span>
-                                </div>
-                                <div class="action clearfix">
-                                    <a href="" title="" class="add-cart fl-left">Thêm giỏ hàng</a>
-                                    <a href="" title="" class="buy-now fl-right">Mua ngay</a>
-                                </div>
-                            </li>
-                            <li>
-                                <a href="" title="" class="thumb">
-                                    <img src="https://vietthuong.vn/image/catalog/roland/piano/piano-roland-501r-mau-den.jpg">
-                                </a>
-                                <a href="" title="" class="product-name">Laptop HP Probook 4430s</a>
-                                <div class="price">
-                                    <span class="new">17.900.000đ</span>
-                                    <span class="old">20.900.000đ</span>
-                                </div>
-                                <div class="action clearfix">
-                                    <a href="" title="" class="add-cart fl-left">Thêm giỏ hàng</a>
-                                    <a href="" title="" class="buy-now fl-right">Mua ngay</a>
-                                </div>
-                            </li>
-                            <li>
-                                <a href="" title="" class="thumb">
-                                    <img src="https://vietthuong.vn/image/catalog/roland/piano/piano-roland-501r-mau-den.jpg">
-                                </a>
-                                <a href="" title="" class="product-name">Laptop HP Probook 4430s</a>
-                                <div class="price">
-                                    <span class="new">17.900.000đ</span>
-                                    <span class="old">20.900.000đ</span>
-                                </div>
-                                <div class="action clearfix">
-                                    <a href="" title="" class="add-cart fl-left">Thêm giỏ hàng</a>
-                                    <a href="" title="" class="buy-now fl-right">Mua ngay</a>
-                                </div>
-                            </li>
-                            <li>
-                                <a href="" title="" class="thumb">
-                                    <img src="https://vietthuong.vn/image/catalog/kawai/Grand/dan-piano-grand-kawai-gl20.jpg">
-                                </a>
-                                <a href="" title="" class="product-name">Laptop HP Probook 4430s</a>
-                                <div class="price">
-                                    <span class="new">17.900.000đ</span>
-                                    <span class="old">20.900.000đ</span>
-                                </div>
-                                <div class="action clearfix">
-                                    <a href="" title="" class="add-cart fl-left">Thêm giỏ hàng</a>
-                                    <a href="" title="" class="buy-now fl-right">Mua ngay</a>
-                                </div>
-                            </li>
-                            <li>
-                                <a href="" title="" class="thumb">
-                                    <img src="https://vietthuong.vn/image/catalog/kawai/Grand/dan-piano-grand-kawai-gl20.jpg">
-                                </a>
-                                <a href="" title="" class="product-name">Laptop HP Probook 4430s</a>
-                                <div class="price">
-                                    <span class="new">17.900.000đ</span>
-                                    <span class="old">20.900.000đ</span>
-                                </div>
-                                <div class="action clearfix">
-                                    <a href="" title="" class="add-cart fl-left">Thêm giỏ hàng</a>
-                                    <a href="" title="" class="buy-now fl-right">Mua ngay</a>
-                                </div>
-                            </li>
-                            <li>
-                                <a href="" title="" class="thumb">
-                                    <img src="https://vietthuong.vn/image/catalog/kawai/Grand/dan-piano-grand-kawai-gl20.jpg">
-                                </a>
-                                <a href="" title="" class="product-name">Laptop HP Probook 4430s</a>
-                                <div class="price">
-                                    <span class="new">17.900.000đ</span>
-                                    <span class="old">20.900.000đ</span>
-                                </div>
-                                <div class="action clearfix">
-                                    <a href="" title="" class="add-cart fl-left">Thêm giỏ hàng</a>
-                                    <a href="" title="" class="buy-now fl-right">Mua ngay</a>
-                                </div>
-                            </li>
-                            <li>
-                                <a href="" title="" class="thumb">
-                                    <img src="https://vietthuong.vn/image/catalog/kawai/Grand/dan-piano-grand-kawai-gl20.jpg">
-                                </a>
-                                <a href="" title="" class="product-name">Laptop HP Probook 4430s</a>
-                                <div class="price">
-                                    <span class="new">17.900.000đ</span>
-                                    <span class="old">20.900.000đ</span>
-                                </div>
-                                <div class="action clearfix">
-                                    <a href="" title="" class="add-cart fl-left">Thêm giỏ hàng</a>
-                                    <a href="" title="" class="buy-now fl-right">Mua ngay</a>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div> -->
+
             </div>
             <div class="sidebar fl-left">
                 @include('components.sidebar')
+                @include('components.sidebarResponsive')
             </div>
         </div>
     </div>

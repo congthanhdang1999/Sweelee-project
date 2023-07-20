@@ -17,8 +17,8 @@ trait StorageImageTrait{
             return $dataUpload;
         }
         return null;
-        
-        
+
+
 
     }
     public function storageTraitUploadVideo($request,$fieldName,$folder){
